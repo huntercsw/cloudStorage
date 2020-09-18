@@ -12,3 +12,7 @@ func HttpHandlerTest(c *gin.Context) {
 		"message": "Hello yinuo",
 	})
 }
+
+func FileUploader(r *gin.Context) {
+
+}

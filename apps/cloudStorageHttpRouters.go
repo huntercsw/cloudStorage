@@ -6,3 +6,5 @@ func RouterSetUp(r *gin.Engine) {
 	r.GET("/api/test", HttpHandlerTest)
 
 }
+
+
