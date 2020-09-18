@@ -1,0 +1,15 @@
+<CloudStorage>
+    <ip>0.0.0.0</ip>    <!--ip address listen on -->
+    <port>12345</port>   <!--port listen on -->
+    <log>
+        <logName>./logs/webServer.log</logName>     <!--log name of gin framework-->
+        <name>./logs/cloudStorage.log</name>            <!--log name of project-->
+        <maxSize>5</maxSize>                        <!--max size of log (MB)-->
+        <maxBackups>5</maxBackups>                  <!--max number of old log-->
+        <maxAge>10</maxAge>                         <!--max days of old log retained-->
+        <compress>false</compress>
+        <level>debug</level>
+    </log>
+    <etcd>192.168.1.151:2379</etcd>             <!--etcd endpoints-->
+    <etcd>192.168.0.110:2379</etcd>
+</CloudStorage>
