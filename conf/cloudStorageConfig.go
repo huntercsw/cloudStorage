@@ -13,10 +13,19 @@ var (
 )
 
 type CloudStorageConf struct {
-	Ip   string          `xml:"ip"`   // service listen on
-	Port int             `xml:"port"` // service listen on
-	Etcd []string        `xml:"etcd"` // etcd ip:port
-	Log  cloudStorageLog `xml:"log"`
+	Ip    string            `xml:"ip"`   // service listen on
+	Port  int               `xml:"port"` // service listen on
+	Etcd  []string          `xml:"etcd"` // etcd ip:port
+	Log   cloudStorageLog   `xml:"log"`
+	Mysql cloudStorageMysql `xml:"mysql"`
+}
+
+type cloudStorageMysql struct {
+	Host     string `xml:"host"`
+	Port     int    `xml:"port"`
+	User     string `xml:"user"`
+	Password string `xml:"password"`
+	DBName   string `xml:"dbName"`
 }
 
 type cloudStorageLog struct {
@@ -46,7 +55,7 @@ func (conf *CloudStorageConf) newConf() (err error) {
 	return nil
 }
 
-func ICloudConfInit() (err error) {
+func CloudStorageConfInit() (err error) {
 	if err = CSConf.newConf(); err != nil {
 		return
 	}

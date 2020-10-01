@@ -3,6 +3,7 @@ package main
 import (
 	"CloudStorage/apps"
 	"CloudStorage/conf"
+	"CloudStorage/cs"
 	csLog "CloudStorage/log"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -16,14 +17,23 @@ func init() {
 		}
 	}()
 
-	if err := conf.ICloudConfInit(); err != nil {
+	if err := conf.CloudStorageConfInit(); err != nil {
 		log.Fatal("CloudStorage Configuration Initialize Error: ", err)
 	}
 
 	csLog.InitLogger()
+
+	if err := MysqlInit(); err != nil {
+		cs.MySql.Close()
+		log.Fatal("CloudStorage MySql Initialize Error: ", err)
+	}
 }
 
 func main() {
+	defer func() {
+		cs.MySql.Close()
+	}()
+
 	r := gin.Default()
 
 	apps.RouterSetUp(r)
